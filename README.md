@@ -98,7 +98,7 @@
 
 ### 🐦 Latest Tweet
 
-[![](https://gtce.itsvg.in/api?username=iamusmanmalik)]()
+[![](https://gtce.itsvg.in/api?username=iamusmanmalik)](https://twitter.com/iamusmanmalik)
 
 ### ✍️ Random Dev Quote
 
