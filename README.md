@@ -94,7 +94,7 @@
 
 ---
 
-<img src="https://raw.githubusercontent.com/imusmanmalik/imusmanmalik/blob/output/snake.svg" alt="Snake animation" />
+<img src="https://raw.githubusercontent.com/imusmanmalik/imusmanmalik/output/snake.svg" alt="Snake animation" />
 
 ### 🐦 Latest Tweet
 
