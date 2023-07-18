@@ -94,22 +94,17 @@
 
 ---
 
-<img src="https://raw.githubusercontent.com/imusmanmalik/imusmanmalik/output/snake.svg" alt="Snake animation" />
-
-### 🐦 Latest Tweet
-
-[![](https://gtce.itsvg.in/api?username=iamusmanmalik)](https://twitter.com/iamusmanmalik)
-
-### ✍️ Random Dev Quote
-
-![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=dark)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="snake-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="snake.svg" />
+  <img alt="github-snake" src="snake.svg" />
+</picture>
 
 ### 🔝 Top Contributed Repo
 
 ![](https://github-contributor-stats.vercel.app/api?username=imusmanmalik&limit=5&theme=onedark&combine_all_yearly_contributions=true)
 
 ---
-[![](https://visitcount.itsvg.in/api?id=imusmanmalik&icon=2&color=0)](https://visitcount.itsvg.in)
 
 ## 💰 You can support me by Donating
 
