@@ -1,0 +1,51 @@
+name: Render profile assets
+
+on:
+  schedule:
+    - cron: "17 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: profile-assets
+  cancel-in-progress: false
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: render/requirements.txt
+
+      - name: Cache fonts
+        uses: actions/cache@v4
+        with:
+          path: render/.fonts
+          key: fonts-${{ hashFiles('render/common.py') }}
+
+      - run: pip install -r render/requirements.txt
+
+      - name: Render racks, upstream table and stats
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python render/racks.py
+          python render/stats.py
+
+      - name: Commit changed assets
+        run: |
+          git add assets README.md
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: refresh profile assets and upstream table"
+          git push

@@ -1,0 +1,152 @@
+# Devices with pull: true are local mirrors of the central plane.
+# Source for the rack diagram and the "Upstream fixes, rack by rack" table in
+# README.md. racks.py reads the live state of every PR on each run: merged and
+# open PRs get a marker and a table row, closed PRs drop out of both.
+# In "change", {url} is replaced with the PR link.
+# New upstream PRs that are not listed here show up in the job summary.
+racks:
+  - id: A
+    role: control plane
+    devices:
+      - name: Local mirror
+        tools: Git mirror  Harbor replica
+        pull: true
+      - name: Kubernetes control plane
+        tools: apiserver  etcd  scheduler  controllers
+        prs:
+          - url: https://github.com/kubernetes/kubernetes/pull/141742
+            change: "[Taint eviction reports deletion latency in seconds]({url})"
+          - url: https://github.com/kubernetes/kubernetes/pull/143949
+            change: "[Scheduler volumebinding no longer panics]({url}) when a CSIStorageCapacity has no capacity"
+      - name: Bare metal provisioning
+        tools: Cluster API  Metal3  Ironic  MAAS  iPXE
+        prs:
+          - url: https://github.com/spectrocloud-public/cluster-api-provider-maas/pull/121
+            change: "[Worker replica count can be set]({url}) in the Cluster API MAAS provider"
+      - name: Multi-cluster
+        tools: Karmada  Kamaji  k0rdent  Rancher
+      - name: GitOps
+        tools: Argo CD  Flux  kro  kapp-controller
+        prs:
+          - url: https://github.com/carvel-dev/kapp-controller/pull/1259
+            change: "[kapp-controller default sync period is configurable]({url})"
+      - name: Policy and supply chain
+        tools: Kyverno  Sigstore  SLSA  SBOM
+        security: true
+      - name: Secrets and PKI
+        tools: Vault  OpenBao  cert-manager  SOPS
+        security: true
+      - name: Identity and zero trust
+        tools: Keycloak  SPIFFE  Teleport  OpenZiti
+        security: true
+      - name: Observability
+        tools: OpenTelemetry  VictoriaMetrics  Perses
+        maintains:
+          - imusmanmalik/cert-manager-mixin
+  - id: B
+    role: compute
+    devices:
+      - name: Local mirror
+        tools: Git mirror  Harbor replica
+        pull: true
+      - name: GPU inference and batch
+        tools: vLLM  llm-d  KServe  Kueue  DRA
+        prs:
+          - url: https://github.com/kubernetes/kubernetes/pull/143790
+            change: "[DRA device taint eviction no longer counts terminating pods]({url})"
+      - name: VMs and microVMs
+        tools: KubeVirt  Cloud Hypervisor  Firecracker
+        prs:
+          - url: https://github.com/kubevirt/kubevirt/pull/19783
+            change: "[Bug report](https://github.com/kubevirt/kubevirt/issues/19782) and [fix]({url}) for a KubeVirt live migration that fails on the way back to its source node"
+      - name: Confidential VMs and containers
+        tools: Confidential Containers  SEV-SNP  TDX
+        security: true
+      - name: Node agent
+        tools: kubelet  containerd  runc  NRI
+        prs:
+          - url: https://github.com/kubernetes/kubernetes/pull/142665
+            change: "[kubelet FileKeyRef parsing]({url}) handles optional files, empty values and whitespace"
+          - url: https://github.com/kubernetes/kubernetes/pull/143947
+            change: "[kubelet uses the last definition of a duplicated key in env files]({url})"
+          - url: https://github.com/kubernetes/website/pull/59013
+            change: "[Kubernetes docs for env file syntax and optional FileKeyRef]({url})"
+      - name: Pod network
+        tools: OVN-Kubernetes  Cilium  Multus
+        prs:
+          - url: https://github.com/ovn-kubernetes/ovn-kubernetes/pull/6735
+            change: "[OVN-Kubernetes UDN host isolation degrades instead of failing node startup]({url}). The kubelet cgroup path is configurable, so it runs on hosts without systemd such as Talos"
+      - name: Service mesh and load balancing
+        tools: Istio  Envoy  HAProxy  LoxiLB
+      - name: BGP to the host
+        tools: BIRD  FRR  ECMP
+        prs:
+          - url: https://github.com/siderolabs/extensions/pull/1067
+            change: "[bird2 starts in Talos maintenance mode]({url}), so a BGP-to-host node gets its address before the container runtime runs"
+      - name: Immutable OS
+        tools: Talos Linux  Kairos  Flatcar  bootc
+        prs:
+          - url: https://github.com/mudler/yip/pull/257
+            change: "[yip partition growth no longer mixes sectors and bytes]({url}) on Kairos nodes"
+          - url: https://github.com/kairos-io/kairos-init/pull/327
+            change: "[kairos-init tries the epel-release package first on RHEL]({url})"
+          - url: https://github.com/kairos-io/kairos-init/pull/150
+            change: "[kairos-init drops python3-pynvim from Debian base packages]({url})"
+      - name: Linux kernel
+        tools: eBPF  nftables  XFRM IPsec  Tetragon
+        security: true
+        prs:
+          - url: https://github.com/siderolabs/pkgs/pull/1663
+            change: "Talos kernel builds with [`CONFIG_XFRM_INTERFACE`]({url}) for route-based IPsec"
+          - url: https://github.com/siderolabs/pkgs/pull/1625
+            change: "Talos kernel builds with [`CONFIG_NFT_SOCKET`]({url}) for socket matching in nftables"
+        # Mailing list patches have no GitHub state, so they count as in review.
+        posted:
+          - url: https://lore.kernel.org/netdev/?q=%22use+software+GSO+for+inner+tunnels%22
+            change: "[xfrm uses software GSO for inner tunnels]({url}) when the device has no crypto offload"
+            where: netdev
+  - id: C
+    role: storage
+    devices:
+      - name: Local mirror
+        tools: Git mirror  Harbor replica
+        pull: true
+      - name: Ceph
+        tools: Rook  RBD  CephFS  KMIP encryption
+        security: true
+        prs:
+          - url: https://github.com/ceph/ceph-csi/pull/5722
+            change: "[ceph-csi Helm chart passes `POD_NAMESPACE`]({url}), so the KMIP secret lookup for volume encryption finds its secret"
+      - name: Databases
+        tools: CloudNativePG  TimescaleDB  PostGIS
+        maintains:
+          - imusmanmalik/cloudnative-pg-timescaledb-postgis-containers
+      - name: Streaming
+        tools: Kafka  NATS  Redpanda
+      - name: Object storage
+        tools: Ceph RGW  Garage  SeaweedFS  RustFS
+      - name: Replicated block
+        tools: LINSTOR  DRBD  Longhorn
+      - name: Local NVMe
+        tools: OpenEBS  TopoLVM  LVM
+      - name: Backup
+        tools: Velero  CSI snapshots  object lock
+
+# Upstream PRs that stay out of the diagram: docs typos, chart bumps, small fixes.
+ignored:
+  - https://github.com/kairos-io/kairos/pull/3447
+  - https://github.com/grepplabs/reverse-http/pull/1
+  - https://github.com/tinkerbell/tinkerbell-docs/pull/176
+  - https://github.com/tinkerbell/actions/pull/102
+  - https://github.com/opentofu/manifesto/pull/428
+  - https://github.com/carvel-dev/carvel/pull/658
+  - https://github.com/monitoring-mixins/website/pull/30
+  - https://github.com/cncf/memorials/pull/92
+  - https://github.com/maurodesouza/profile-readme-generator/pull/35
+  - https://github.com/carvel-dev/carvel/pull/627
+  - https://github.com/cloudnative-pg/cloudnative-pg/pull/912
+  - https://github.com/kudobuilder/kuttl/pull/392
+  - https://github.com/argoproj/argo-helm/pull/1363
+  - https://github.com/kubeovn/kube-ovn/pull/1610
+  - https://github.com/kubevirt/user-guide/pull/545
+  - https://github.com/prometheus-community/helm-charts/pull/1487
