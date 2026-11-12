@@ -43,6 +43,8 @@ fun_fact: "I read RFCs, kernel changelogs and CVE feeds for fun."
   <img alt="Private cloud architecture by Usman Malik. A central plane with Git, CI/CD, a Harbor registry and identity feeds three racks that only pull from it. The racks hold a Kubernetes control plane, compute with KubeVirt, confidential VMs and GPU nodes, and Ceph storage on a leaf-spine BGP fabric. Markers show his upstream pull requests." src="assets/racks-light.svg">
 </picture>
 
+Open the diagram full size in [light](assets/racks-light.svg) or [dark](assets/racks-dark.svg) mode.
+
 ## How I work
 
 - Product requirements and the roadmap come first, then the tools. A tool stays when it pays off for the business, the team can run it for years, and it fits the cost and energy budget. The stack in this README is what I use today, and it changes as the requirements change.
@@ -135,7 +137,7 @@ Compliance           # ISO 27001, VDS 3473, BSI IT-Grundschutz, NIS2, KRITIS,
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/stats-dark.svg">
-  <img alt="GitHub activity of Usman Malik. 28 pull requests merged in 23 upstream projects and 2,106 contributions in the last year. Top languages by contribution are Go 44%, HCL 31%, Shell 8%." src="assets/stats-light.svg">
+  <img alt="GitHub activity of Usman Malik. 28 pull requests merged in 23 upstream projects and 2,107 contributions in the last year. Top languages by contribution are Go 41%, HCL 29%, Python 8%." src="assets/stats-light.svg">
 </picture>
 
 <picture>
