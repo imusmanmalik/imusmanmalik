@@ -137,7 +137,7 @@ Compliance           # ISO 27001, VDS 3473, BSI IT-Grundschutz, NIS2, KRITIS,
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/stats-dark.svg">
-  <img alt="GitHub activity of Usman Malik. 28 pull requests merged in 23 upstream projects and 2,107 contributions in the last year. Top languages by contribution are Go 41%, HCL 29%, Python 8%." src="assets/stats-light.svg">
+  <img alt="GitHub activity of Usman Malik. 28 pull requests merged in 23 upstream projects and 2,109 contributions in the last year. Top languages by contribution are Go 41%, HCL 28%, Python 9%." src="assets/stats-light.svg">
 </picture>
 
 <picture>
