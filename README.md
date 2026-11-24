@@ -65,7 +65,7 @@ The diagram is the platform I build. Each marker in it is a pull request in this
 |  | VMs and microVMs | [Bug report](https://github.com/kubevirt/kubevirt/issues/19782) and [fix](https://github.com/kubevirt/kubevirt/pull/19783) for a KubeVirt live migration that fails on the way back to its source node | <kbd>in review</kbd> |
 |  | Node agent | [kubelet FileKeyRef parsing](https://github.com/kubernetes/kubernetes/pull/142665) handles optional files, empty values and whitespace | <kbd>merged</kbd> |
 |  | Node agent | [kubelet uses the last definition of a duplicated key in env files](https://github.com/kubernetes/kubernetes/pull/143947) | <kbd>in review</kbd> |
-|  | Node agent | [Kubernetes docs for env file syntax and optional FileKeyRef](https://github.com/kubernetes/website/pull/59013) | <kbd>in review</kbd> |
+|  | Node agent | [Kubernetes docs for env file syntax and optional FileKeyRef](https://github.com/kubernetes/website/pull/59013) | <kbd>merged</kbd> |
 |  | Pod network | [OVN-Kubernetes UDN host isolation degrades instead of failing node startup](https://github.com/ovn-kubernetes/ovn-kubernetes/pull/6735). The kubelet cgroup path is configurable, so it runs on hosts without systemd such as Talos | <kbd>merged</kbd> |
 |  | BGP to the host | [bird2 starts in Talos maintenance mode](https://github.com/siderolabs/extensions/pull/1067), so a BGP-to-host node gets its address before the container runtime runs | <kbd>merged</kbd> |
 |  | Immutable OS | [yip partition growth no longer mixes sectors and bytes](https://github.com/mudler/yip/pull/257) on Kairos nodes | <kbd>merged</kbd> |
@@ -135,7 +135,7 @@ Compliance           # ISO 27001, VDS 3473, BSI IT-Grundschutz, NIS2, KRITIS,
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/stats-dark.svg">
-  <img alt="GitHub activity of Usman Malik. 28 pull requests merged in 23 upstream projects and 2,109 contributions in the last year. Top languages by contribution are Go 42%, HCL 30%, Python 10%." src="assets/stats-light.svg">
+  <img alt="GitHub activity of Usman Malik. 29 pull requests merged in 24 upstream projects and 2,110 contributions in the last year. Top languages by contribution are Go 42%, HCL 30%, Python 10%." src="assets/stats-light.svg">
 </picture>
 
 <picture>
